@@ -10,12 +10,12 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        // Java 21 is the target; local dev uses 23 (highest installed on this machine).
+        // Java 21 is the target; local dev uses 17 (highest installed on this machine).
         // CI/production should have Java 21 installed.
-        languageVersion = JavaLanguageVersion.of(23)
+        languageVersion = JavaLanguageVersion.of(17)
     }
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
