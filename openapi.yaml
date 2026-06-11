@@ -1,0 +1,96 @@
+openapi: "3.0.3"
+info:
+  title: BBS API
+  version: "1.0.0"
+  description: Spring Next BBS Portfolio API
+
+servers:
+  - url: http://localhost:8080
+    description: Local
+
+paths:
+  /api/auth/token:
+    post:
+      tags: [auth]
+      summary: OTC를 Access Token으로 교환
+      operationId: exchangeToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: 토큰 발급 성공
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenApiResponse'
+        '400':
+          $ref: '#/components/responses/ProblemDetail'
+
+  /api/auth/logout:
+    post:
+      tags: [auth]
+      summary: 로그아웃 (AUTH-002 구현 예정)
+      operationId: logout
+      responses:
+        '200':
+          description: 구현 예정
+
+  /api/auth/reissue:
+    post:
+      tags: [auth]
+      summary: 토큰 재발급 (AUTH-003 구현 예정)
+      operationId: reissue
+      responses:
+        '200':
+          description: 구현 예정
+
+components:
+  schemas:
+    TokenRequest:
+      type: object
+      required: [code]
+      properties:
+        code:
+          type: string
+          format: uuid
+
+    TokenResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        message:
+          type: string
+
+    TokenApiResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/TokenResponse'
+
+  responses:
+    ProblemDetail:
+      description: RFC 7807 Problem Details
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            properties:
+              type: { type: string }
+              title: { type: string }
+              status: { type: integer }
+              detail: { type: string }
