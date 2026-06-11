@@ -56,16 +56,18 @@ components:
       properties:
         code:
           type: string
-          format: uuid
+          description: OTC (One-Time Code, UUID 형식)
 
     TokenResponse:
       type: object
+      required: [accessToken]
       properties:
         accessToken:
           type: string
 
     ApiResponse:
       type: object
+      required: [success]
       properties:
         success:
           type: boolean
