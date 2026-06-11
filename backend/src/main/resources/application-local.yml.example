@@ -1,0 +1,14 @@
+# 복사 → application-local.yml (gitignore) 후 실제 값 입력
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: YOUR_KAKAO_CLIENT_ID
+            client-secret: YOUR_KAKAO_CLIENT_SECRET
+          google:
+            client-id: YOUR_GOOGLE_CLIENT_ID
+            client-secret: YOUR_GOOGLE_CLIENT_SECRET
+jwt:
+  secret: YOUR_BASE64_256BIT_SECRET
